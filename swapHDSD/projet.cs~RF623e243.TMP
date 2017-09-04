@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SQLite;
+using System.Data;
+
+namespace swapHDSD
+{
+    class ProjetActuel
+    {
+        int id;
+        string nom;
+        string path;
+
+        // Charge un nouveau projet par # de id
+        public void setProjet(int nId, string nNom, string nPath)
+        {
+            this.id = nId;
+            this.nom = nNom;
+            this.path = nPath;
+
+            Console.WriteLine("Projet charge : " + nId + " | " + nNom + " | " + nPath);
+        }
+
+        public string getNom()
+        {
+            return this.nom;
+        }
+
+        public string getPath()
+        {
+            return this.path;
+        }
+    }
+
+    public class Projet
+    {
+        // Objet de la BDD
+        public SQLiteConnection conn;
+
+        // Projet actuel
+        ProjetActuel projetActuel;
+
+        // Constructeur
+        public Projet()
+        {
+            //
+            projetActuel = new ProjetActuel();
+            // Connection à la BDD
+            conn = new SQLiteConnection("Data Source=ressource\\projets.db;Version=3;");
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        // Charge le dernier projet utilisé, (aucun) sinon
+        public void chargeDernierProjet()
+        {
+            DataSet ds = new DataSet();
+
+            const string sql = "select * from projets where id = (select * from projetActuel);";
+            var da = new SQLiteDataAdapter(sql, conn);
+            da.Fill(ds);
+
+            this.projetActuel.setProjet(Convert.ToInt32(ds.Tables[0].Rows[0][0]), ds.Tables[0].Rows[0][1].ToString(), ds.Tables[0].Rows[0][2].ToString());
+        }
+
+        public string nom()
+        {
+            return this.projetActuel.getNom();
+        }
+        public string path()
+        {
+            return this.projetActuel.getPath();
+        }
+
+        // Met la liste des projets dans une liste reçue par référence
+        public void getListe(System.Windows.Forms.ListBox Liste)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                var da = new SQLiteDataAdapter("select * from projets", this.conn);
+                da.Fill(ds);
+
+                foreach (DataTable table in ds.Tables)
+                {
+                    foreach (DataRow dr in table.Rows)
+                    {
+                        Liste.Items.Add(dr[1].ToString());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        // Met à jour le projet actuel
+        public void update(string nom, string path, int id)
+        {
+            string sql = "update projets set nom=\"" + nom + "\", path =\"" + path + "\" where id=" + id + ";";
+            SQLiteCommand command = new SQLiteCommand(sql, this.conn);
+            command.ExecuteNonQuery();
+            Console.WriteLine(sql);
+        }
+    }
+}

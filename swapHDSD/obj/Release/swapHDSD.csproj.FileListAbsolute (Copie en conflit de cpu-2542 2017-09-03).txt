@@ -1,0 +1,17 @@
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\swapHDSD.exe.config
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\swapHDSD.exe
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\swapHDSD.pdb
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\EntityFramework.dll
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\System.Data.SQLite.dll
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\System.Data.SQLite.EF6.dll
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\System.Data.SQLite.Linq.dll
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\EntityFramework.xml
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Release\System.Data.SQLite.xml
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Release\swapHDSD.choisirForm.resources
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Release\swapHDSD.editerForm.resources
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Release\swapHDSD.Properties.Resources.resources
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Release\swapHDSD.csproj.GenerateResource.Cache
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Release\swapHDSD.exe
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Release\swapHDSD.pdb
