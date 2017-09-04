@@ -34,5 +34,5 @@ Le programme roule toujours : il suffit de double-cliquer sur l'icone pour inter
 
 ## Révisions
 
-v0.9.1 (2017-09-04) : Ajout de la copie des fichiers, et meilleure gestion des projets. Ajout du manuel.
+v0.9.1 (2017-09-04) : Ajout de la copie des fichiers, et meilleure gestion des projets. Ajout du manuel. 
 v0.9.0 (2017-09-01) : Pour commentaires
