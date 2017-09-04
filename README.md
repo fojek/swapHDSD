@@ -20,7 +20,7 @@ Un Double-clic sur l'icone effectue l'échange HD->SD si un projet valide est ch
 Un clic droit ouvre le menu avec quatre options : 
  * `Gérer ...` : ouvrir l'interface de gestion des projets. 
  * `Parcourir HD ...` et `Parcourir SD ...` : ouvrent le dossier correspondant du projet en cours.
- * Quitter
+ * `Quitter`
 
 #### Interface de gestion des projets
 Sert à créer / editer / supprimer les projets, et finalement à charger le projet sélectionné dans la liste. Les projets sont sauvegardés dans une base de données SQLite3  (`\swapHDSD\swapHDSD\bin\Release\ressource\projets.db`) On peut également spécifier le dossier source Photoshop, qui est sauvegardé automatiquement.
