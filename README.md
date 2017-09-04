@@ -5,7 +5,7 @@ Gestionnaire de proxy d'images fixes pour Edius permettant d'animer en temps ré
 ## Manuel
 
 ### Démarrage
-Pour le démarrer, il faut trouver 'swapHDSD\swapHDSD\bin\Release\swapHDSD.exe', et le démarrer en tant qu'administrateur. Sinon Windows ne permet pas de de faire le transfert des répertoires. 
+Pour le démarrer, il faut trouver 'swapHDSD\swapHDSD\bin\Release\swapHDSD.exe', et le démarrer en tant qu'administrateur. Sinon Windows ne permet pas de faire le transfert des répertoires. 
 
 ### Utilisation
 #### Icone de notification
