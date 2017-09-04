@@ -19,7 +19,7 @@ Un Double-clic sur l'icone effectue l'échange HD->SD si un projet valide est ch
 #### Clic droit
 Un clic droit ouvre le menu avec quatre options : 
  * 'Gérer ...' : ouvrir l'interface de gestion des projets. 
- * 'Parcourir SD ...' et 'Parcourir SD ...' : ouvrent le dossier correspondant du projet en cours.
+ * 'Parcourir HD ...' et 'Parcourir SD ...' : ouvrent le dossier correspondant du projet en cours.
  * Quitter
 
 #### Interface de gestion des projets
