@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using swapHDSD;
+using System.IO;
 
 namespace swapHDSD
 {
@@ -74,7 +75,7 @@ namespace swapHDSD
         {
             BrowserDialog.ShowDialog();
             
-            if (BrowserDialog.SelectedPath != "")
+            if (Directory.Exists(BrowserDialog.SelectedPath))
             {
                 pathSourceLabel.Text = BrowserDialog.SelectedPath;
                 projet.setProxy(pathSourceLabel.Text);

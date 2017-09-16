@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace swapHDSD
+{
+    public class DossierSurveille
+    {
+        public FileSystemWatcher watcher;
+        internal string sousDossier;
+
+        // Nombre de fichiers en attente
+        public int EnAttente { get; set; }
+
+        public DossierSurveille(string pSousDossier)
+        {
+            sousDossier = pSousDossier;
+            CreateWatcher();
+        }
+
+        // Création du FileSystemWatcher au sous dossier Photoshop
+        public void CreateWatcher()
+        {
+            //Create a new FileSystemWatcher.
+            watcher = new FileSystemWatcher();
+
+            //Subscribe to the Created event.
+            watcher.Created += new FileSystemEventHandler(watcher_FileCreated);
+
+            // Assigne le path au dossier Photoshop
+            watcher.Path = sousDossier;
+
+            //Enable the FileSystemWatcher events.
+            watcher.EnableRaisingEvents = true;
+
+            Console.WriteLine("Nouveau Watcher initialisé à {0}", sousDossier);
+        }
+
+        // Événement de fichier créé
+        virtual internal void watcher_FileCreated(object sender, FileSystemEventArgs e)
+        {
+            ++EnAttente;
+            Console.WriteLine("{0} fichiers en attente dans {1}", EnAttente, sousDossier);
+        }
+    }
+
+    public class DossierProxy : DossierSurveille
+    {
+        public DossierProxy(string pSousDossier) : base(pSousDossier)
+        {
+        }
+
+        internal override void watcher_FileCreated(object sender, FileSystemEventArgs e)
+        {
+            ++EnAttente;
+            Console.WriteLine("{0} fichiers en attente dans {1}", EnAttente, sousDossier);
+        }
+    }
+    public class DossierParent
+    {
+        // Les deux sous-dossiers
+        private string[] paths = new string[] { "\\proxy", "\\proxy-" };
+        List<DossierSurveille> sousDossiers;
+
+        // Property pour le path
+        public string PhotoshopPath { get; set; }
+
+        // Constructeur
+        public DossierParent(string pPath)
+        {
+            PhotoshopPath = pPath;
+            sousDossiers = new List<DossierSurveille>();
+
+            // Crée une instance de sous-dossier surveillé dans la liste avec les paths
+            foreach (string path in paths)
+            {
+                sousDossiers.Add(new DossierSurveille(PhotoshopPath + path));
+                sousDossiers.Last().watcher.Created += new FileSystemEventHandler(NouveauxFichiers);
+            }
+        }
+
+        public void NouveauxFichiers(object sender, FileSystemEventArgs e)
+        {
+            int total = 0;
+
+            // Somme des fichiers en attente
+            foreach (DossierSurveille sd in sousDossiers)
+            {
+                total += sd.EnAttente;
+            }
+            Console.WriteLine("Total des fichiers en attente : {0}", total);
+        }
+    }
+}

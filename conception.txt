@@ -1,0 +1,9 @@
+1. Nouveau fichier créé, événement Created, met fichier en file d'attente
+2. Libre?
+	2.1 Non : 
+		2.1.2 démarre timer
+	2.2 Oui :
+		2.2.1 Copie fichier
+
+timer complété
+	retourne à 2.

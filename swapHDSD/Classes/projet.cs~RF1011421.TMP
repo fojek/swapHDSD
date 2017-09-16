@@ -55,18 +55,20 @@ namespace swapHDSD
         // Projet actuel
         ProjetActuel projetActuel;
 
+        // Proxy Photoshop
+        DossierParent proxyPhotoshop;
+
         // Affichage
         System.Drawing.Icon iconeHD;
         System.Drawing.Icon iconeSD;
         NotifyIcon icone;
-        bool test;
+        internal enum HDouSD { HD, SD };
 
         // Fichiers
         string proxy;
         string proxy_standby;
         string proxy_temp;
         string bidon;
-        string pathSource;
 
         // Constructeur
         public Projet(NotifyIcon icn)
@@ -117,9 +119,9 @@ namespace swapHDSD
 
         internal void setProxy(string selectedPath)
         {
-            pathSource = selectedPath;
+            proxyPhotoshop = new DossierParent(selectedPath, NouveauxFichiersProjet, ceciEstUnTest);
 
-            string sql = "update dossierproxy set path=\"" + pathSource + "\" ;";
+            string sql = "update dossierproxy set path=\"" + proxyPhotoshop.PhotoshopPath + "\" ;";
             SQLiteCommand command = new SQLiteCommand(sql, this.conn);
             try
             {
@@ -179,7 +181,7 @@ namespace swapHDSD
                 MessageBox.Show(e.Message);
             }
 
-            HDouSD();
+            UpdateIcone();
 
             return true;
         }
@@ -194,12 +196,11 @@ namespace swapHDSD
 
             try
             {
-                this.projetActuel.setProjet(Convert.ToInt32(ds.Tables[0].Rows[0][0]), ds.Tables[0].Rows[0][1].ToString(), ds.Tables[0].Rows[0][2].ToString());
+                projetActuel.setProjet(Convert.ToInt32(ds.Tables[0].Rows[0][0]), ds.Tables[0].Rows[0][1].ToString(), ds.Tables[0].Rows[0][2].ToString());
             }
             catch (Exception e)
             {
-                MessageBox.Show("Aucun projet n'a été chargé.\n" + e.Message);
-                this.projetActuel.setProjet(-1, "", "");
+                projetActuel.setProjet(-1, "", "");
                 icone.Text = "(aucun)";
             }
 
@@ -209,16 +210,22 @@ namespace swapHDSD
             sql = "select * from dossierproxy;";
             var du = new SQLiteDataAdapter(sql, conn);
             du.Fill(dw);
-            
-            pathSource = dw.Tables[0].Rows[0][1].ToString();
-            Console.WriteLine("Dossier proxy chargé : " + pathSource);
 
-            sql = "update projetActuel set id=" + this.projetActuel.getId() + ";";
+            string photoshopPath = dw.Tables[0].Rows[0][1].ToString();
+
+            proxyPhotoshop = new DossierParent(photoshopPath, NouveauxFichiersProjet, ceciEstUnTest);
+            Console.WriteLine("Dossier proxy chargé : " + proxyPhotoshop.PhotoshopPath);
+
+            sql = "update projetActuel set id=" + projetActuel.getId() + ";";
             Console.WriteLine(sql);
             SQLiteCommand command = new SQLiteCommand(sql, this.conn);
             command.ExecuteNonQuery();
 
             icone.Text = this.projetActuel.getNom();
+
+            // Balloon Tooltip
+            icone.BalloonTipText = "Projet chargé : " + icone.Text + "\nProxy photoshop : " + proxyPhotoshop.PhotoshopPath;
+            icone.ShowBalloonTip(2000);
         }
 
         // Charge le dernier projet utilisé, (aucun) sinon
@@ -238,7 +245,7 @@ namespace swapHDSD
         {
             labelnom.Text = "Projet actuel : " + this.projetActuel.getNom();
             labelpath.Text = this.projetActuel.getPath();
-            pathSourceLabel.Text = pathSource;
+            pathSourceLabel.Text = proxyPhotoshop.PhotoshopPath;
 
             Liste.Items.Clear();
             try
@@ -312,17 +319,17 @@ namespace swapHDSD
         // Met les noms dans les objets en référence
         internal void getNoms(TextBox nomTextbox, TextBox pathTextbox)
         {
-            nomTextbox.Text = this.projetActuel.getNom();
-            pathTextbox.Text = this.projetActuel.getPath();
+            nomTextbox.Text = projetActuel.getNom();
+            pathTextbox.Text = projetActuel.getPath();
 
-            Console.WriteLine("Projet : " + this.projetActuel.getNom() + " " + this.projetActuel.getPath());
+            Console.WriteLine("Projet : " + projetActuel.getNom() + " " + projetActuel.getPath());
         }
 
         // Vérifie l'existence du path, sinon crée les dossiers
         public bool verifierDossiers()
         {
             // Dossiers et fichiers
-            string path = this.projetActuel.getPath();
+            string path = projetActuel.getPath();
             proxy = path + "\\proxy";
             proxy_standby = path + "\\proxy-standby";
             proxy_temp = path + "\\proxy-temp";
@@ -335,9 +342,10 @@ namespace swapHDSD
                 if (Directory.Exists(proxy) && Directory.Exists(proxy_standby))
                 {
                     // Update l'icone
-                    HDouSD();
+                    UpdateIcone();
                     return true;
                 }
+
                 // S'ils n'existent pas, on les crée
                 else
                 {
@@ -347,44 +355,14 @@ namespace swapHDSD
                     result = MessageBox.Show("Voulez-vous créer les dossiers du projet ?", "Dossiers inexistants", buttons);
 
                     // Si l'utilisateur a accepté, on crée les dossiers et le fichier bidon
-                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    if (result == DialogResult.Yes)
                     {
                         // Crée le répertoires et le fichier
                         Directory.CreateDirectory(proxy);
                         Directory.CreateDirectory(proxy_standby);
                         File.CreateText(bidon);
 
-                        // Copie les images depuis le proxy
-                        MessageBox.Show("Les images dans le dossier '" + pathSource + "' seront copiées dans '" + projetActuel.getPath() + "'.");
-
-                        int imagesSD = 0;
-                        int imagesHD = 0;
-
-                        try
-                        {
-                            foreach (var file in Directory.GetFiles(pathSource + "\\proxy-"))
-                            {
-                                File.Copy(file, Path.Combine(proxy, Path.GetFileName(file)));
-                                imagesHD++;
-                            }
-
-
-                            foreach (var file in Directory.GetFiles(pathSource + "\\proxy"))
-                            {
-                                File.Copy(file, Path.Combine(proxy_standby, Path.GetFileName(file)));
-                                imagesSD++;
-                            }
-                        }
-
-                        catch(Exception e)
-                        {
-                            MessageBox.Show("Erreur lors de la copie :\n" + e.Message);
-                            return false;
-                        }
-
-                        MessageBox.Show(imagesSD + " images copiées dans '\\proxy' et " + imagesHD + " images copiées dans '\\proxy-standby'.");
-
-                        // Il s'agit de la première copie, on ouvre l'explorateur Windows :
+                        // On ouvre l'explorateur Windows :
                         Process.Start(proxy);
 
                         // Met par défaut l'icone HD
@@ -399,18 +377,113 @@ namespace swapHDSD
             // Le dossier principal n'existe pas, erreur! On retourne à la fenêtre de choix
             else
             {
-                MessageBox.Show("Le dossier spécifié dans le projet n'existe pas!");
+                MessageBox.Show("Le dossier projet {0} n'existe pas!", path);
                 return false;
             }
         }
 
-        public void HDouSD()
+        internal HDouSD testHDouSD()
+        {
+            // (condition) ? (si vrai) : (si faux)
+            return File.Exists(bidon) ? HDouSD.HD : HDouSD.SD;
+        }
+
+        public void UpdateIcone()
         {
             // On teste l'existence du fichier bidon afin de savoir dans quel état on est
-            if (File.Exists(bidon))
+            if (testHDouSD() == HDouSD.HD)
                 icone.Icon = iconeHD;
             else
                 icone.Icon = iconeSD;
         }
+
+        // Cette fonction est appelée quand un des sous-dossiers surveillé a un événement Created
+        public void NouveauxFichiersProjet(object sender, FileSystemEventArgs e)
+        {
+            FileSystemWatcher asd = sender as FileSystemWatcher;
+            
+            Console.WriteLine("Nouveau fichier vu depuis le projet! " + asd.Path);
+
+            foreach(var fichier in Directory.GetFiles(asd.Path))
+            {
+                try
+                {
+                    File.Move(fichier, proxy + '\\' + Path.GetFileName(fichier));
+                }
+                catch (Exception ee)
+                {
+                    Console.WriteLine(ee.Message + " " + asd.Path + '\\' + fichier);
+                }
+            }
+
+            proxyPhotoshop.sousDossiers[0].Method();
+        }
+
+        public void ceciEstUnTest(object sender, EventArgs e)
+        {
+            Console.WriteLine("=== Duuuuuuuuuude ");
+        }
+
+        // Pris sur https://stackoverflow.com/questions/876473/is-there-a-way-to-check-if-a-file-is-in-use/937558#937558
+        protected virtual bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+
+            //file is not locked
+            return false;
+        }
     }
 }
+
+
+/*
+ * 
+ * // Copie les images depuis le proxy
+                    MessageBox.Show("Les images dans le dossier '" + proxyPhotoshop.PhotoshopPath + "' seront copiées dans '" + projetActuel.getPath() + "'.");
+
+                    int imagesSD = 0;
+                    int imagesHD = 0;
+
+                    try
+                    {
+                        foreach (var file in Directory.GetFiles(proxyPhotoshop.PhotoshopPath + "\\proxy-"))
+                        {
+                            File.Copy(file, Path.Combine(proxy, Path.GetFileName(file)));
+                            imagesHD++;
+                        }
+
+
+                        foreach (var file in Directory.GetFiles(proxyPhotoshop.PhotoshopPath + "\\proxy"))
+                        {
+                            File.Copy(file, Path.Combine(proxy_standby, Path.GetFileName(file)));
+                            imagesSD++;
+                        }
+                    }
+
+                    catch(Exception e)
+                    {
+                        MessageBox.Show("Erreur lors de la copie :\n" + e.Message);
+                        return false;
+                    }
+
+                    MessageBox.Show(imagesSD + " images copiées dans '\\proxy' et " + imagesHD + " images copiées dans '\\proxy-standby'.");
+*/
+  

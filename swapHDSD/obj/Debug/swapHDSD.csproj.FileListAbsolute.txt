@@ -17,8 +17,8 @@ C:\Users\mfortier\Dropbox\freres\swapHDSD\swapHDSD\bin\Debug\System.Data.SQLite.
 C:\Users\mfortier\Dropbox\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.editerForm.resources
 C:\Users\mfortier\Dropbox\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.choisirForm.resources
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.exe.config
-C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.exe
-C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.pdb
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.exe.manifest
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.application
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.exe
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.pdb
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\EntityFramework.dll
@@ -34,7 +34,7 @@ C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.editerForm.resources
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.Properties.Resources.resources
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.csproj.GenerateResource.Cache
-C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.exe.manifest
-C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\bin\Debug\swapHDSD.application
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.exe.manifest
 C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.application
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.exe
+C:\Users\mfortier\Dropbox\Documents\freres\swapHDSD\swapHDSD\obj\Debug\swapHDSD.pdb

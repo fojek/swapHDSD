@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using swapHDSD;
+using System.IO;
 
 namespace swapHDSD
 {
@@ -54,6 +55,7 @@ namespace swapHDSD
 
         }
 
+        // Édition du path
         private void parcourirButton_Click(object sender, EventArgs e)
         {
             if (mode == MODE.EDITER)
@@ -61,10 +63,17 @@ namespace swapHDSD
 
             BrowserDialog.ShowDialog();
 
-            if(BrowserDialog.SelectedPath != "")
+            if (!Directory.Exists(BrowserDialog.SelectedPath))
+            {
+                MessageBox.Show("Le répertoire sélectionné n'existe pas : \n\'{0}\'", BrowserDialog.SelectedPath);
+            }
+            else
+            {
                 pathTextbox.Text = BrowserDialog.SelectedPath;
+            }
         }
 
+        // On sauvegarde selon l'état de la fenêtre
         private void sauvegarderButton_Click(object sender, EventArgs e)
         {
             if (mode == MODE.EDITER)
@@ -80,6 +89,7 @@ namespace swapHDSD
             }
         }
 
+        // On s'assure que du texte a été entré
         private void verifValide(object sender, EventArgs e)
         {
             if(nomTextbox.Text == "" || pathTextbox.Text == "")

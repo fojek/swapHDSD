@@ -19,30 +19,26 @@ namespace swapHDSD
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             NotifyIcon icn = new NotifyIcon();
-
-            Projet projet = new swapHDSD.Projet(icn);
-            projet.chargeProjet();
-            projet.verifierDossiers();
-
-            // Par défaut, SD
-            projet.HDouSD();
-
+            
+            Projet projet = new Projet(icn);
+            
             // Conteneur
             System.ComponentModel.Container components = new System.ComponentModel.Container();
 
             // Liste du clic-droit
-            System.Windows.Forms.ToolStripMenuItem GererButton = new System.Windows.Forms.ToolStripMenuItem("Gerer ...");
+            ToolStripMenuItem GererButton = new ToolStripMenuItem("Gerer ...");
             GererButton.Click += new EventHandler(Gerer_Click);
-            System.Windows.Forms.ToolStripSeparator separateur1 = new System.Windows.Forms.ToolStripSeparator();
-            System.Windows.Forms.ToolStripSeparator separateur2 = new System.Windows.Forms.ToolStripSeparator();
-            System.Windows.Forms.ToolStripMenuItem ouvrirSDButton = new System.Windows.Forms.ToolStripMenuItem("Parcourir SD ...");
+            ToolStripSeparator separateur1 = new ToolStripSeparator();
+            ToolStripSeparator separateur2 = new ToolStripSeparator();
+            ToolStripMenuItem ouvrirSDButton = new ToolStripMenuItem("Parcourir SD ...");
             ouvrirSDButton.Click += new EventHandler(ouvrirSD_Click);
-            System.Windows.Forms.ToolStripMenuItem ouvrirHDButton = new System.Windows.Forms.ToolStripMenuItem("Parcourir HD ...");
+            ToolStripMenuItem ouvrirHDButton = new ToolStripMenuItem("Parcourir HD ...");
             ouvrirHDButton.Click += new EventHandler(OuvrirHD_Click);
-            System.Windows.Forms.ToolStripMenuItem exitButton = new System.Windows.Forms.ToolStripMenuItem("Quitter");
+            ToolStripMenuItem exitButton = new ToolStripMenuItem("Quitter");
             exitButton.Click += new EventHandler(exit_Click);
-            System.Windows.Forms.ContextMenuStrip Liste = new System.Windows.Forms.ContextMenuStrip(components);
+            ContextMenuStrip Liste = new ContextMenuStrip(components);
 
+            // Ajout des éléments dans la liste du clic-droit
             Liste.Items.AddRange(new System.Windows.Forms.ToolStripItem[]
             {
                 GererButton,
@@ -53,24 +49,32 @@ namespace swapHDSD
                 exitButton
             });
 
-            Liste.Name = "contextMenuStrip1";
+            Liste.Name = "MenuClicDroit";
             Liste.Size = new System.Drawing.Size(135, 82);
 
             // Icone dans le tray de notifications
             icn.MouseDoubleClick += new MouseEventHandler(icn_Click);
             icn.Visible = true;
 
+            // Chargement du projet
+            projet.chargeProjet();
+            projet.verifierDossiers();
+            projet.UpdateIcone(); // Par défaut, HD
+
             // On met l'objet projet dans les objects ci-dessous pour pouvoir les utiliser dans leurs événements
             icn.Tag = projet;
             GererButton.Tag = projet;
             ouvrirHDButton.Tag = projet;
             ouvrirSDButton.Tag = projet;
+            exitButton.Tag = icn;
 
+            // Assigne la liste à l'icone de notification
             icn.ContextMenuStrip = Liste;
 
             Application.Run();
         }
 
+        // Élément de la liste OuvrirHD
         private static void OuvrirHD_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem btn = sender as ToolStripMenuItem;
@@ -79,6 +83,7 @@ namespace swapHDSD
             projet.ouvrirHD();
         }
 
+        // Élément de la liste OuvrirSD
         private static void ouvrirSD_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem btn = sender as ToolStripMenuItem;
@@ -87,6 +92,7 @@ namespace swapHDSD
             projet.ouvrirSD();
         }
 
+        // Double-clic
         static void icn_Click(object sender, EventArgs e)
         {
             // ici on appelle la fonction qui intervertit les répertoires HD et SD
@@ -97,6 +103,7 @@ namespace swapHDSD
             Console.WriteLine("Changement HD -> SD");
         }
 
+        // Élément de la liste Gérer
         static void Gerer_Click(object sender, EventArgs e)
         {
             // ici on appelle la fonction pour éditer / choisir le projet en cours
@@ -108,8 +115,15 @@ namespace swapHDSD
             Form.Show();
         }
 
+        // Élément de la liste Quitter
         static void exit_Click(object sender, EventArgs e)
         {
+            ToolStripMenuItem btn = sender as ToolStripMenuItem;
+            NotifyIcon icone = btn.Tag as NotifyIcon;
+
+            // Pour éviter que l'icone reste bêtement dans la barre des notifications!
+            icone.Dispose();
+
             Application.Exit();
         }
     }

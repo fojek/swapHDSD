@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
-          requestedExecutionLevel node with one of the following.
+          Options du manifeste de contrôle de compte d'utilisateur
+          Si vous souhaitez modifier le niveau du contrôle de compte d'utilisateur Windows, remplacez le 
+          nœud requestedExecutionLevel par l'une des propositions suivantes :
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
-         compatibility then delete the requestedExecutionLevel node.
+         Si vous souhaitez utiliser la virtualisation de fichiers et du Registre pour la 
+         compatibilité descendante, supprimez le nœud requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="swapHDSD.exe" size="24016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="swapHDSD.exe" size="31184">
       <assemblyIdentity name="swapHDSD" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ngq7xA8ikNj/1sKQMNtkTsn43b4UR+VBdIjeC2hd7ek=</dsig:DigestValue>
+        <dsig:DigestValue>Q1gLLSkBTl6gCOrLzhzF7orQ/yAALbxr+3iT+k10Kqk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -113,6 +113,24 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Ressources\HD.ico" size="10462">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>EooRJr2PzmmU26fo3khR2LKYmlxCrf4495TTnjp7Zv8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Ressources\SD.ico" size="10462">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hFQJpqv9J8nIA7oiJYw6FNqcSuULES9/pl/uB3wBVrI=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="swapHDSD.exe.config" size="1756">
     <hash>
       <dsig:Transforms>
