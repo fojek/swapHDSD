@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using swapHDSD;
+using System.IO;
 
 namespace swapHDSD
 {
@@ -71,7 +72,31 @@ namespace swapHDSD
             // Assigne la liste à l'icone de notification
             icn.ContextMenuStrip = Liste;
 
+            // Les logs (pris sur https://stackoverflow.com/questions/4470700/how-to-save-console-writeline-output-to-text-file#4470751)
+            FileStream ostrm;
+            StreamWriter writer;
+            TextWriter oldOut = Console.Out;
+            try
+            {
+                ostrm = new FileStream("./log.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                writer = new StreamWriter(ostrm);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Impossible d'ouvrir le fichier log!");
+                Console.WriteLine(e.Message);
+                return;
+            }
+            Console.SetOut(writer);
+
+            Console.WriteLine("Debut du log");
+
             Application.Run();
+
+            Console.SetOut(oldOut);
+            writer.Close();
+            ostrm.Close();
+            Console.WriteLine("Done");
         }
 
         // Élément de la liste OuvrirHD
@@ -100,6 +125,7 @@ namespace swapHDSD
             Projet projet = icn.Tag as Projet;
 
             projet.swapProxy();
+
             Console.WriteLine("Changement HD -> SD");
         }
 

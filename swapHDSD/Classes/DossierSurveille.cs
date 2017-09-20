@@ -116,16 +116,10 @@ namespace swapHDSD
         {
             FileInfo fichier = new FileInfo(e.FullPath);
 
-            if (IsFileLocked(fichier))
-            {
-                fichiers.Add(fichier);
-                timer.Start();
-                Console.WriteLine("Fichier {0} créé mais verrouillé, ajout dans la pile.", fichier.FullName);
-            }
-            else
-            {
-                FichierLibre(fichier);
-            }
+            fichiers.Add(fichier);
+            timer.Start();
+            Console.WriteLine("Fichier {0} créé, ajout dans la pile.", fichier.FullName);
+
         }
 
         public void FichierLibre(FileInfo fichier)
@@ -138,6 +132,7 @@ namespace swapHDSD
         }
 
         // Pris sur https://stackoverflow.com/questions/876473/is-there-a-way-to-check-if-a-file-is-in-use/937558#937558
+        // Modifié pour vérifier que le fichier n'est pas vide.
         protected virtual bool IsFileLocked(FileInfo file)
         {
             FileStream stream = null;
@@ -159,6 +154,12 @@ namespace swapHDSD
             {
                 if (stream != null)
                     stream.Close();
+            }
+
+            if(file.Length == 0)
+            {
+                Console.WriteLine("Le fichier est vide!", file.Name);
+                return true;
             }
 
             //file is not locked
