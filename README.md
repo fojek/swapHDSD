@@ -35,6 +35,7 @@ Le programme roule toujours : il suffit de double-cliquer sur l'icone pour inter
 
 ## Révisions
 
+ * `v0.9.3` (2017-09-20) : Ajout du fichier log, vérification fichier vide
  * `v0.9.2` (2017-09-16) : Ajout des événements FileCreated, dans les classes DossierSurveille.  
  * `v0.9.1` (2017-09-04) : Ajout de la copie des fichiers, et meilleure gestion des projets. Ajout du manuel. 
  * `v0.9.0` (2017-09-01) : Pour commentaires
