@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
-          requestedExecutionLevel node with one of the following.
+          Options du manifeste de contrôle de compte d'utilisateur
+          Si vous souhaitez modifier le niveau du contrôle de compte d'utilisateur Windows, remplacez le 
+          nœud requestedExecutionLevel par l'une des propositions suivantes :
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
-         compatibility then delete the requestedExecutionLevel node.
+         Si vous souhaitez utiliser la virtualisation de fichiers et du Registre pour la 
+         compatibilité descendante, supprimez le nœud requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="swapHDSD.exe" size="31696">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="swapHDSD.exe" size="32208">
       <assemblyIdentity name="swapHDSD" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PETS0GcGowYKViivrkVqCngrb/8QXfAdLjnceZfCoiY=</dsig:DigestValue>
+        <dsig:DigestValue>3JybMJrSL+HN+O4FjmPLon38+ZtyqB/7oLVGwjN+F+c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

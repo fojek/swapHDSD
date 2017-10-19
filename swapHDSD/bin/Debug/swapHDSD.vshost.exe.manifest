@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="swapHDSD.exe" size="31184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="swapHDSD.exe" size="32208">
       <assemblyIdentity name="swapHDSD" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Q1gLLSkBTl6gCOrLzhzF7orQ/yAALbxr+3iT+k10Kqk=</dsig:DigestValue>
+        <dsig:DigestValue>3JybMJrSL+HN+O4FjmPLon38+ZtyqB/7oLVGwjN+F+c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

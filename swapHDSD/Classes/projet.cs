@@ -472,9 +472,24 @@ namespace swapHDSD
             // déplacement du fichier
             try
             {
-                // Supprime le fichier destination s'il existe
+                // Supprime le fichier destination s'il existe, avec 10 essais
                 if (File.Exists(dest))
-                    File.Delete(dest);
+                {
+                    int essais = 0;
+                    do
+                    {
+                        try
+                        {
+                            File.Delete(dest);
+                            essais = 10;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("(" + essais + ") Veuillez libérer le fichier " + dest);
+                            ++essais;
+                        }
+                    } while (essais<10);
+                }
 
                 File.Move(fichierPretArgs.fichier.FullName, dest);
 
@@ -495,57 +510,3 @@ namespace swapHDSD
         }
     }
 }
-
-
-/*
- * 
- * // Copie les images depuis le proxy
-                    MessageBox.Show("Les images dans le dossier '" + proxyPhotoshop.PhotoshopPath + "' seront copiées dans '" + projetActuel.getPath() + "'.");
-
-                    int imagesSD = 0;
-                    int imagesHD = 0;
-
-                    try
-                    {
-                        foreach (var file in Directory.GetFiles(proxyPhotoshop.PhotoshopPath + "\\proxy-"))
-                        {
-                            File.Copy(file, Path.Combine(proxy, Path.GetFileName(file)));
-                            imagesHD++;
-                        }
-
-
-                        foreach (var file in Directory.GetFiles(proxyPhotoshop.PhotoshopPath + "\\proxy"))
-                        {
-                            File.Copy(file, Path.Combine(proxy_standby, Path.GetFileName(file)));
-                            imagesSD++;
-                        }
-                    }
-
-                    catch(Exception e)
-                    {
-                        MessageBox.Show("Erreur lors de la copie :\n" + e.Message);
-                        return false;
-                    }
-
-                    MessageBox.Show(imagesSD + " images copiées dans '\\proxy' et " + imagesHD + " images copiées dans '\\proxy-standby'.");
-
-            // Cette fonction est appelée quand un des sous-dossiers surveillé a un événement Created
-        public void NouveauxFichiersProjet(object sender, FileSystemEventArgs e)
-        {
-            FileSystemWatcher asd = sender as FileSystemWatcher;
-            
-            Console.WriteLine("Nouveau fichier vu depuis le projet! " + asd.Path);
-
-            foreach(var fichier in Directory.GetFiles(asd.Path))
-            {
-                try
-                {
-                    File.Move(fichier, proxy + '\\' + Path.GetFileName(fichier));
-                }
-                catch (Exception ee)
-                {
-                    Console.WriteLine(ee.Message + " " + proxy + '\\' + Path.GetFileName(fichier));
-                }
-            }
-        }
-*/

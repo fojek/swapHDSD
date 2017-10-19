@@ -1,0 +1,64 @@
+Debut du log
+Creer / Editer projet
+select * from projets where nom = "Test Projet";
+Projet charge : 21 | Test Projet | C:\Users\mfortier\Desktop\Test
+Le dossier C:\Users\mfortier\Desktop\dossierPhotoshop n'existe pas.
+Dossier proxy chargé : (aucun)
+update projetActuel set id=21;
+Dossier inexistant : \proxy
+Dossier inexistant : \proxy-
+Dossier inexistant : \proxyExec
+Nouveau Watcher initialisé à C:\Users\mfortier\Desktop\testt\proxy
+Dossier C:\Users\mfortier\Desktop\testt\proxy vide.
+Nouveau Watcher initialisé à C:\Users\mfortier\Desktop\testt\proxy-
+Dossier C:\Users\mfortier\Desktop\testt\proxy- vide.
+Nouveau Watcher initialisé à C:\Users\mfortier\Desktop\testt\proxyExec
+Dossier C:\Users\mfortier\Desktop\testt\proxyExec vide.
+update dossierproxy set path="C:\Users\mfortier\Desktop\testt" ;
+select * from projets where nom = "Test Projet";
+Projet charge : 21 | Test Projet | C:\Users\mfortier\Desktop\Test
+Nouveau Watcher initialisé à C:\Users\mfortier\Desktop\testt\proxy
+Dossier C:\Users\mfortier\Desktop\testt\proxy vide.
+Nouveau Watcher initialisé à C:\Users\mfortier\Desktop\testt\proxy-
+Dossier C:\Users\mfortier\Desktop\testt\proxy- vide.
+Nouveau Watcher initialisé à C:\Users\mfortier\Desktop\testt\proxyExec
+Dossier C:\Users\mfortier\Desktop\testt\proxyExec vide.
+Dossier proxy chargé : C:\Users\mfortier\Desktop\testt
+update projetActuel set id=21;
+Fichier C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (4).png créé, ajout dans la pile.
+Fichier C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (4).png créé, ajout dans la pile.
+Fichier C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (5).png créé, ajout dans la pile.
+Fichier C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (5).png créé, ajout dans la pile.
+Fichier C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (6).png créé, ajout dans la pile.
+Fichier C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (6).png créé, ajout dans la pile.
+Fichiers en attente : 3
+Fichiers en attente : 3
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (4).png
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (4).png
+!!Nouveau fichier dans le dossier SD
+!!Nouveau fichier dans le dossier SD
+Événement fichier pret dans C:\Users\mfortier\Desktop\testt\proxy
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (5).png
+!!Nouveau fichier dans le dossier SD
+Événement fichier pret dans C:\Users\mfortier\Desktop\testt\proxy
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (5).png
+!!Nouveau fichier dans le dossier SD
+Événement fichier pret dans C:\Users\mfortier\Desktop\testt\proxy
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (6).png
+!!Nouveau fichier dans le dossier SD
+Événement fichier pret dans C:\Users\mfortier\Desktop\testt\proxy
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\vlcsnap-2017-02-05-13h53m41s486 - Copy (6).png
+!!Nouveau fichier dans le dossier SD
+Événement fichier pret dans C:\Users\mfortier\Desktop\testt\proxy
+Événement fichier pret dans C:\Users\mfortier\Desktop\testt\proxy
+Fichiers en attente : 0
+Aucun fichier dans la pile!
+Fichiers en attente : 0
+Aucun fichier dans la pile!
+Fichier C:\Users\mfortier\Desktop\testt\proxy\lisez-moi.txt créé, ajout dans la pile.
+Fichier C:\Users\mfortier\Desktop\testt\proxy\lisez-moi.txt créé, ajout dans la pile.
+Fichiers en attente : 1
+Fichier copié et retiré de la liste : C:\Users\mfortier\Desktop\testt\proxy\lisez-moi.txt
+!!Nouveau fichier dans le dossier SD
+Fichiers en attente : 1
+Événement fichier pret dans C:\Users\
