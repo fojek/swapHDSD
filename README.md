@@ -34,7 +34,7 @@ En appuyant sur charger, si c'est la première fois que le projet est ouvert, le
 Le programme roule toujours : il suffit de double-cliquer sur l'icone pour intervertir les dossiers.
 
 ## Révisions
-
+ * `v0.9.4` (2017-10-19) : Ajout d'un retry pour la supression des fichiers existants (pour liberer dans Edius)
  * `v0.9.3` (2017-09-20) : Ajout du fichier log, vérification fichier vide
  * `v0.9.2` (2017-09-16) : Ajout des événements FileCreated, dans les classes DossierSurveille.  
  * `v0.9.1` (2017-09-04) : Ajout de la copie des fichiers, et meilleure gestion des projets. Ajout du manuel. 
